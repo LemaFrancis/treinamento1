@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class Interface {
@@ -72,9 +73,9 @@ class Interface {
     }
 
     private void listarCargos() {
-        ArrayList<Cargo> listaCargo = (ArrayList<Cargo>) this.empresa.getListaCargo();
-        for (Cargo cargo : this.empresa.getListaCargo()) {
-            System.out.println(aux + " - " + cargo.toString());
+        List<Cargo> cargos = this.empresa.getListaCargo();
+        for (Cargo cargo : cargos) {
+            System.out.println((cargos.indexOf(cargo) + 1) + " - " + cargo.toString());
         }
     }
 
