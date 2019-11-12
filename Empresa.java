@@ -17,13 +17,14 @@ class Empresa {
     }
 
     //========= USUÁRIO ==========//
+
     /**
      * Método para inserir um novo usuario na lista de usuarios.
      *
      * @param usuario
      */
-    public void inserirUsuario(Usuario usuario) {
-        this.listaUsuario.add(usuario);
+    public Boolean inserirUsuario(Usuario usuario) {
+        return this.listaUsuario.add(usuario);
     }
 
     /**
@@ -36,34 +37,55 @@ class Empresa {
     }
 
     /**
-     * Método para obter a lista de Cargos
+     * Método para remover um usuario da empresa
      *
-     * @return listaCargo
+     * @param cpf
+     * @return boolean
      */
-    public List<Cargo> getListaCargo() {
-        return listaCargo;
+    public Boolean removerUsuario(String cpf) {
+        for (Usuario user : listaUsuario) {
+            if (user.pf.getCpf().equals(cpf)) {
+                return this.listaUsuario.remove(user);
+            }
+        }
+        return false;
     }
 
-    /**
-     * Método para obter a lista de perfis de usuario
-     *
-     * @return listaPerfil
-     */
-    public List<Perfil> getListaPerfil() {
-        return listaPerfil;
-    }
+    public void editarUsuario() {
 
+    }
 
     //========= CARGO ==========//
+
     /**
      * Método para inserir um novo cargo na lista de cargos.
      *
      * @param cargo
+     * @return boolean
      */
     public Boolean inserirCargo(Cargo cargo) {
         return this.listaCargo.add(cargo);
     }
 
+    /**
+     * Método para obter a lista de Cargos
+     *
+     * @return listaCargo
+     */
+    public List<Cargo> getListaCargo() {
+        return this.listaCargo;
+    }
+
+    /**
+     * Método para remover cargo da lista de cargos
+     *
+     * @param id
+     * @return boolean
+     */
+    public Boolean removerCargo(int id) {
+        Cargo cargo = this.listaCargo.get(id - 1);
+        return this.listaCargo.remove(cargo);
+    }
 
     //========= PERFIL ==========//
 
@@ -72,46 +94,31 @@ class Empresa {
      *
      * @param perfil
      */
-    public void inserirPerfil(Perfil perfil) {
-        this.listaPerfil.add(perfil);
+    public Boolean inserirPerfil(Perfil perfil) {
+        return this.listaPerfil.add(perfil);
     }
 
     /**
-     * Método para remover um usuario da empresa
+     * Método para obter a lista de perfis de usuario
      *
-     * @param cpf
+     * @return listaPerfil
      */
-    public void removerUsuario(String cpf) {
-        boolean flag = false;
-        for (Usuario user : listaUsuario) {
-            System.out.println("Percorrendo Usuarios: " + user);
-            if (user.getCpf().equals(cpf)) {
-                this.listaUsuario.remove(user);
-                System.out.println("Usuário removido com sucesso");
-                flag = true;
-            }
-        }
-        if (!flag) {
-            System.out.println("Usuário NÃO REMOVIDO");
-        }
+    public List<Perfil> getListaPerfil() {
+        return this.listaPerfil;
     }
 
     /**
-     * Método para remover um cargo da empresa
+     * Método para remover um perfil de usuário do sistema
      *
-     * @param cargo
+     * @param id
      */
-    public void removerPerfil(Cargo cargo) {
-        this.listaCargo.remove(cargo);
+    public Boolean removerPerfil(int id) {
+        Perfil perfil = this.listaPerfil.get(id);
+        return this.listaPerfil.remove(perfil);
     }
 
-    /**
-     * Método para remover um perfil da empresa
-     *
-     * @param perfil
-     */
-    public void removerUsuario(Perfil perfil) {
-        this.listaPerfil.remove(perfil);
+    public void editarPerfil() {
+
     }
 
 }

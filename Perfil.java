@@ -3,14 +3,19 @@ import java.util.List;
 
 class Perfil {
 
-    private String perfil;
+    private String tipoPerfil;
 
-    public Perfil(String perfil) {
-        this.perfil = perfil;
+    Perfil(String perfil) {
+        this.tipoPerfil = perfil;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
+    public void setTipoPerfil(String perfil) {
+        this.tipoPerfil = perfil;
+    }
+
+    @Override
+    public String toString() {
+        return tipoPerfil + "\n";
     }
 
 }
