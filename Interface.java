@@ -11,85 +11,6 @@ class Interface {
         this.empresa = new Empresa();
     }
 
-    //================= INÍCIO USUÁRIO ===============//
-    private void cadastrarUsuario() {
-        String nome, cpf, dataNascimento, sexo, cargo;
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\nDigite o nome: ");
-        nome = scanner.nextLine();
-        System.out.println("Digite o cpf: ");
-        cpf = scanner.nextLine();
-        System.out.println("Digite a data de nascimento: ");
-        dataNascimento = scanner.nextLine();
-        System.out.println("Digite o sexo (M ou F): ");
-        sexo = scanner.nextLine();
-        System.out.println("\nSelecione o cargo pretendido: ");
-        this.listarCargos();
-
-        int pos = scanner.nextInt();
-        System.out.println("POSITION: " + pos);
-        cargo = selecionarCargo(pos);
-
-        Usuario usuario = new Usuario(nome, cpf, dataNascimento, sexo, cargo);
-        this.empresa.inserirUsuario(usuario);
-        this.listarUsuarios();
-    }
-
-    private String selecionarCargo(int position) {
-        Cargo cargo = this.empresa.getListaCargo().get(position);
-        return cargo.getNomeCargo();
-    }
-
-    private void removerUsuario() {
-        String cpf;
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\nDigite o CPF do usuário que deseja remover: ");
-        cpf = scanner.nextLine();
-        this.empresa.removerUsuario(cpf);
-        this.listarUsuarios();
-    }
-
-    private void listarUsuarios() {
-        for (Usuario user : this.empresa.getListaUsuario()) {
-            System.out.println(user + "\n");
-        }
-    }
-
-    private void editarUsuario() {
-
-    }
-
-    //================= INÍCIO CARGO ===============//
-    private void cadastrarCargo() {
-        String nomeCargo;
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\nDigite o nome do cargo: ");
-        nomeCargo = ucFirst(scanner.nextLine());
-        Cargo cargo = new Cargo(nomeCargo);
-        this.empresa.inserirCargo(cargo);
-        this.listarCargos();
-    }
-
-    private void listarCargos() {
-        List<Cargo> cargos = this.empresa.getListaCargo();
-        for (Cargo cargo : cargos) {
-            System.out.println((cargos.indexOf(cargo) + 1) + " - " + cargo.toString());
-        }
-    }
-
-    private void removerCargo() {
-
-    }
-
-    private void editarCargo() {
-    }
-
-    private static void cadastrarPerfil() {
-    }
-
     //================= GERENCIAR USUARIO ==============//
     private void gerenciarUsuario() {
         Scanner scan = new Scanner(System.in);
@@ -98,14 +19,14 @@ class Interface {
         while (op == 0) {
             System.out.println("**********************************************");
             System.out.println("*         1 - GERENCIAR USUÁRIO              *");
-            System.out.println("**********************************************");
+            System.out.println("*--------------------------------------------*");
             System.out.println("*  ( 1 ) - Cadastrar novo usuário            *");
             System.out.println("*  ( 2 ) - Edita usuário                     *");
             System.out.println("*  ( 3 ) - Listar todos os usuários          *");
-            System.out.println("*  ( 3 ) - Remover usuário(s)                *");
+            System.out.println("*  ( 4 ) - Remover usuário(s)                *");
             System.out.println("*  ( 0 ) - Voltar ao menu principal          *");
             System.out.println("**********************************************");
-            System.out.println("Escolha (?): (1) || (2) || (3) || (4) || (0)");
+            System.out.println("Escolha uma opção (?): (1)  (2)  (3)  (4)  (0)");
 
             switch (scan.nextInt()) {
                 case 0:
@@ -132,16 +53,66 @@ class Interface {
         System.out.println(this.empresa.getListaUsuario());
     }
 
+    private void cadastrarUsuario() {
+        String nome, cpf, dataNascimento, sexo, cargo;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nDigite o nome: ");
+        nome = scanner.nextLine();
+        System.out.println("Digite o cpf: ");
+        cpf = scanner.nextLine();
+        System.out.println("Digite a data de nascimento: ");
+        dataNascimento = scanner.nextLine();
+        System.out.println("Digite o sexo (M ou F): ");
+        sexo = scanner.nextLine();
+        System.out.println("Selecione o cargo pretendido: ");
+        this.listarCargos();
+
+        int pos = scanner.nextInt();
+        System.out.println("POSITION: " + pos);
+        cargo = selecionarCargo(pos);
+
+        Usuario usuario = new Usuario(nome, cpf, dataNascimento, sexo, cargo);
+        this.empresa.inserirUsuario(usuario);
+        this.listarUsuarios();
+    }
+
+    private void removerUsuario() {
+        String cpf;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nDigite o CPF do usuário que deseja remover: ");
+        cpf = scanner.nextLine();
+        this.empresa.removerUsuario(cpf);
+        this.listarUsuarios();
+    }
+
+    private void listarUsuarios() {
+        for (Usuario user : this.empresa.getListaUsuario()) {
+            System.out.println(user + "\n");
+        }
+    }
+
+    private void editarUsuario() {
+
+    }
+
     //================= GERENCIAR CARGO ===============//
     private void gerenciarCargo() {
         Scanner scan = new Scanner(System.in);
         int op = 0;
 
         while (op == 0) {
-            System.out.println("\n 1 - Cadastrar um novo cargo");
-            System.out.println(" 2 - Remover um cargo");
-            System.out.println(" 0 - Voltar");
-            System.out.println(" Digite o valor da opção desejada: \n");
+            System.out.println("**********************************************");
+            System.out.println("*         2 - GERENCIAR CARGOS               *");
+            System.out.println("*--------------------------------------------*");
+            System.out.println("*  ( 1 ) - Cadastrar novo cargo              *");
+            System.out.println("*  ( 2 ) - Edita cargo                       *");
+            System.out.println("*  ( 3 ) - Listar todos os cargos            *");
+            System.out.println("*  ( 4 ) - Remover cargo(s)                  *");
+            System.out.println("*  ( 0 ) - Voltar ao menu principal          *");
+            System.out.println("**********************************************");
+            System.out.println("Escolha uma opção (?): (1)  (2)  (3)  (4)  (0)");
             switch (scan.nextInt()) {
                 case 0:
                     menuPrincipal();
@@ -158,6 +129,46 @@ class Interface {
                     break;
             }
         }
+    }
+
+    private void cadastrarCargo() {
+        String nomeCargo;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nDigite o nome do cargo: ");
+        nomeCargo = ucFirst(scanner.nextLine());
+        Cargo cargo = new Cargo(nomeCargo);
+        this.empresa.inserirCargo(cargo);
+        this.listarCargos();
+    }
+
+    private void listarCargos() {
+        List<Cargo> cargos = this.empresa.getListaCargo();
+        System.out.println("----------------------------------------------");
+        System.out.println("|              Lista de Cargos               |");
+        System.out.println("----------------------------------------------");
+        for (Cargo cargo : cargos) {
+            System.out.println("      " + (cargos.indexOf(cargo) + 1) + " - " + cargo.toString());
+        }
+        System.out.println("|--------------------------------------------|");
+    }
+
+    private void removerCargo() {
+
+    }
+
+    private void editarCargo() {
+    }
+
+    /**
+     * Método para retornar nome do cargo de acordo com a posição na lista de cargos
+     *
+     * @param position
+     * @return nomeCargo
+     */
+    private String selecionarCargo(int position) {
+        Cargo cargo = this.empresa.getListaCargo().get(position);
+        return cargo.getNomeCargo();
     }
 
     //================= GERENCIAR PERFIL ===============//
@@ -187,19 +198,24 @@ class Interface {
         }
     }
 
+    private static void cadastrarPerfil() {
+    }
+
+
+    //================= MENU PRINCIPAL ===============//
     private void menuPrincipal() {
         Scanner scan = new Scanner(System.in);
         int op = 0;
 
-        System.out.println("            #############################################");
-        System.out.println("            ##              MENU PRINCIPAL             ##");
-        System.out.println("            #############################################");
-        System.out.println("            ##  ( 1 ) - Gerenciar Usuarios             ##");
-        System.out.println("            ##  ( 2 ) - Gerenciar Cargos               ##");
-        System.out.println("            ##  ( 3 ) - Gerenciar Perfis de Usuário    ##");
-        System.out.println("            ##  ( 0 ) - Sair/Cancelar                  ##");
-        System.out.println("            #############################################");
-        System.out.println("\nEscolha uma opção(?):  (1)  (2)  (3)  (0)");
+        System.out.println("#############################################");
+        System.out.println("##              MENU PRINCIPAL             ##");
+        System.out.println("#############################################");
+        System.out.println("##  ( 1 ) - Gerenciar Usuarios             ##");
+        System.out.println("##  ( 2 ) - Gerenciar Cargos               ##");
+        System.out.println("##  ( 3 ) - Gerenciar Perfis de Usuário    ##");
+        System.out.println("##  ( 0 ) - Sair/Cancelar                  ##");
+        System.out.println("#############################################");
+        System.out.println("Escolha uma opção(?):  (1)  (2)  (3)  (0)");
 
         while (op == 0) {
             switch (scan.nextInt()) {
@@ -209,7 +225,18 @@ class Interface {
                     scan.close();
                     break;
                 case 1:
-                    gerenciarUsuario();
+                    if (this.empresa.getListaCargo().isEmpty()) {
+                        System.out.println("\n\t\t\t +----------    ATENÇÃO     ----------+\n" +
+                                "\t\t\t +------------------------------------+\n" +
+                                "\t\t\t | Antes de cadastrar um usuário(s)   |\n" +
+                                "\t\t\t | é preciso inserir ao menos um(01)  |\n" +
+                                "\t\t\t | CARGO(s) e um(01) tipo(s) de       |\n" +
+                                "\t\t\t | PERFIL(s) para usuário(s)          |\n" +
+                                "\t\t\t +------------------------------------+\n");
+                        menuPrincipal();
+                    } else {
+                        gerenciarUsuario();
+                    }
                     break;
                 case 2:
                     gerenciarCargo();
@@ -224,8 +251,14 @@ class Interface {
         }
     }
 
-    private String ucFirst(String letter) {
-        return letter.substring(0, 1).toUpperCase() + letter.substring(1);
+    /**
+     * Método para tornar maiúscula a primeira letra de qualquer palavra
+     *
+     * @param word
+     * @return
+     */
+    private String ucFirst(String word) {
+        return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
 
     void run() {
