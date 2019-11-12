@@ -17,7 +17,6 @@ class Empresa {
     }
 
     //========= USUÁRIO ==========//
-
     /**
      * Método para inserir um novo usuario na lista de usuarios.
      *
@@ -56,7 +55,6 @@ class Empresa {
 
 
     //========= CARGO ==========//
-
     /**
      * Método para inserir um novo cargo na lista de cargos.
      *

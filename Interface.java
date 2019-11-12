@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -95,12 +96,17 @@ class Interface {
         int op = 0;
 
         while (op == 0) {
-            System.out.println("\n 1 - Cadastrar um novo usuário");
-            System.out.println(" 2 - Editar usuário");
-            System.out.println(" 3 - Listar todos os usuários");
-            System.out.println(" 4 - Remover um usuário");
-            System.out.println(" 0 - Voltar");
-            System.out.println(" Digite o valor da opção desejada: \n");
+            System.out.println("**********************************************");
+            System.out.println("*         1 - GERENCIAR USUÁRIO              *");
+            System.out.println("**********************************************");
+            System.out.println("*  ( 1 ) - Cadastrar novo usuário            *");
+            System.out.println("*  ( 2 ) - Edita usuário                     *");
+            System.out.println("*  ( 3 ) - Listar todos os usuários          *");
+            System.out.println("*  ( 3 ) - Remover usuário(s)                *");
+            System.out.println("*  ( 0 ) - Voltar ao menu principal          *");
+            System.out.println("**********************************************");
+            System.out.println("Escolha (?): (1) || (2) || (3) || (4) || (0)");
+
             switch (scan.nextInt()) {
                 case 0:
                     menuPrincipal();
@@ -160,7 +166,7 @@ class Interface {
         int op = 0;
 
         while (op == 0) {
-            System.out.println("\n 1 - Cadastrar um novo perfil");
+            System.out.println(" 1 - Cadastrar um novo perfil");
             System.out.println(" 2 - Remover um perfil");
             System.out.println(" Digite o valor da opção desejada: \n");
             switch (scan.nextInt()) {
@@ -185,11 +191,15 @@ class Interface {
         Scanner scan = new Scanner(System.in);
         int op = 0;
 
-        System.out.println("\n 1 - Gerenciar Usuarios");
-        System.out.println(" 2 - Gerenciar Cargos");
-        System.out.println(" 3 - Gerenciar Perfis de Usuário");
-        System.out.println(" 0 - Sair\n");
-        System.out.println(" Digite o valor da opção desejada: \n");
+        System.out.println("            #############################################");
+        System.out.println("            ##              MENU PRINCIPAL             ##");
+        System.out.println("            #############################################");
+        System.out.println("            ##  ( 1 ) - Gerenciar Usuarios             ##");
+        System.out.println("            ##  ( 2 ) - Gerenciar Cargos               ##");
+        System.out.println("            ##  ( 3 ) - Gerenciar Perfis de Usuário    ##");
+        System.out.println("            ##  ( 0 ) - Sair/Cancelar                  ##");
+        System.out.println("            #############################################");
+        System.out.println("\nEscolha uma opção(?):  (1)  (2)  (3)  (0)");
 
         while (op == 0) {
             switch (scan.nextInt()) {
