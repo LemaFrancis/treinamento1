@@ -1,5 +1,3 @@
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -104,7 +102,7 @@ class Interface {
 
         while (op == 0) {
             System.out.println("**********************************************");
-            System.out.println("*         2 - GERENCIAR CARGOS               *");
+            System.out.println("*         2 - GERENCIAR CARGO                *");
             System.out.println("*--------------------------------------------*");
             System.out.println("*  ( 1 ) - Cadastrar novo cargo              *");
             System.out.println("*  ( 2 ) - Edita cargo                       *");
@@ -122,6 +120,12 @@ class Interface {
                     cadastrarCargo();
                     break;
                 case 2:
+                    editarUsuario();
+                    break;
+                case 3:
+                    listarCargos();
+                    break;
+                case 4:
                     removerCargo();
                     break;
                 default:
@@ -136,7 +140,7 @@ class Interface {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nDigite o nome do cargo: ");
-        nomeCargo = ucFirst(scanner.nextLine());
+        nomeCargo = new Helper().ucFirst(scanner.nextLine());
         Cargo cargo = new Cargo(nomeCargo);
         this.empresa.inserirCargo(cargo);
         this.listarCargos();
@@ -177,9 +181,16 @@ class Interface {
         int op = 0;
 
         while (op == 0) {
-            System.out.println(" 1 - Cadastrar um novo perfil");
-            System.out.println(" 2 - Remover um perfil");
-            System.out.println(" Digite o valor da opção desejada: \n");
+            System.out.println("**********************************************");
+            System.out.println("*         3 - GERENCIAR PERFIL               *");
+            System.out.println("*--------------------------------------------*");
+            System.out.println("*  ( 1 ) - Cadastrar novo PERFIL             *");
+            System.out.println("*  ( 2 ) - Edita perfil                      *");
+            System.out.println("*  ( 3 ) - Listar todos os perfis            *");
+            System.out.println("*  ( 4 ) - Remover perfil(s)                 *");
+            System.out.println("*  ( 0 ) - Voltar ao menu principal          *");
+            System.out.println("**********************************************");
+            System.out.println("Escolha uma opção (?): (1)  (2)  (3)  (4)  (0)");
             switch (scan.nextInt()) {
                 case 0:
                     menuPrincipal();
@@ -249,16 +260,6 @@ class Interface {
                     break;
             }
         }
-    }
-
-    /**
-     * Método para tornar maiúscula a primeira letra de qualquer palavra
-     *
-     * @param word
-     * @return
-     */
-    private String ucFirst(String word) {
-        return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
 
     void run() {
