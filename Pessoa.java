@@ -8,13 +8,9 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getNome() {
-        return nome;
-    }
+//    public abstract String getNome();
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public abstract void setNome(String nome);
 
     public String getDataNascimento() {
         return dataNascimento;

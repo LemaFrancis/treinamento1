@@ -44,7 +44,7 @@ class Empresa {
      */
     public Boolean removerUsuario(String cpf) {
         for (Usuario user : listaUsuario) {
-            if (user.pf.getCpf().equals(cpf)) {
+            if (user.getPf().getCpf().equals(cpf)) {
                 return this.listaUsuario.remove(user);
             }
         }
@@ -79,11 +79,11 @@ class Empresa {
     /**
      * Método para remover cargo da lista de cargos
      *
-     * @param id
+     * @param position
      * @return boolean
      */
-    public Boolean removerCargo(int id) {
-        Cargo cargo = this.listaCargo.get(id - 1);
+    public Boolean removerCargo(int position) {
+        Cargo cargo = this.listaCargo.get(position - 1);
         return this.listaCargo.remove(cargo);
     }
 
@@ -110,10 +110,10 @@ class Empresa {
     /**
      * Método para remover um perfil de usuário do sistema
      *
-     * @param id
+     * @param position
      */
-    public Boolean removerPerfil(int id) {
-        Perfil perfil = this.listaPerfil.get(id);
+    public Boolean removerPerfil(int position) {
+        Perfil perfil = this.listaPerfil.get(position - 1);
         return this.listaPerfil.remove(perfil);
     }
 

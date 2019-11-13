@@ -3,13 +3,22 @@ import java.util.List;
 
 class Usuario {
 
-    private List pj;
+    private PessoaFisica pf;
+    private PessoaJuridica pj;
 
     Usuario(PessoaFisica pessoaFisica) {
-        List<PessoaFisica> pf = new ArrayList<PessoaFisica>();
-        pf.add(pessoaFisica);
+        this.pf = pessoaFisica;
     }
 
+    Usuario(PessoaJuridica pessoaJuridica) {
+        this.pj = pessoaJuridica;
+    }
 
+    public PessoaFisica getPf() {
+        return pf;
+    }
 
+    public PessoaJuridica getPj() {
+        return pj;
+    }
 }

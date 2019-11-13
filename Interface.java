@@ -52,32 +52,79 @@ class Interface {
     }
 
     private void cadastrarUsuario() {
+        Scanner scan = new Scanner(System.in);
+
+        int opcao = 0;
+        while (opcao == 0) {
+            System.out.println("*--------------------------------------------*");
+            System.out.println("*  ( 1 ) - Pessoa Física                     *");
+            System.out.println("*  ( 2 ) - Pessoa Jurídica                   *");
+            System.out.println("*  ( 0 ) - Voltar                            *");
+            System.out.println("**********************************************");
+            System.out.println("Escolha uma opção (?): (1)  (2)  (0)");
+            switch (scan.nextInt()) {
+                case 0:
+                    gerenciarUsuario();
+                    opcao = 1;
+                    break;
+                case 1:
+                    cadastrarPessoaFisica();
+                    break;
+                case 2:
+                    cadastrarPessoaJuridica();
+                    break;
+                default:
+                    System.out.println("Entrada inválida!");
+                    break;
+            }
+        }
+    }
+
+    private void cadastrarPessoaFisica() {
         String nome, cpf, dataNascimento, sexo, cargo;
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("\nDigite o nome: ");
-        nome = scanner.nextLine();
+        nome = scan.nextLine();
         System.out.println("Digite o cpf: ");
-        cpf = scanner.nextLine();
+        cpf = scan.nextLine();
         System.out.println("Digite a data de nascimento: ");
-        dataNascimento = scanner.nextLine();
+        dataNascimento = scan.nextLine();
         System.out.println("Digite o sexo (M ou F): ");
-        sexo = scanner.nextLine();
-        System.out.println("Selecione o cargo pretendido: ");
+        sexo = scan.nextLine();
         this.listarCargos();
+        System.out.println("Selecione o cargo pretendido: ( ? )");
 
-        int pos = scanner.nextInt();
-        System.out.println("POSITION: " + pos);
-        cargo = selecionarCargo(pos);
+        int position = scan.nextInt();
+        cargo = selecionarCargo(position);
 
-        Usuario usuario = new Usuario(nome, cpf, dataNascimento, sexo, cargo);
+        Usuario usuario = new Usuario(new PessoaFisica(nome, cpf, dataNascimento, sexo, cargo));
         if (this.empresa.inserirUsuario(usuario)) {
             System.out.println("Usuário inserido com SUCESSO!!!");
-            this.listarUsuarios();
         } else {
             System.out.println("Erro: Usuário NÃO INSERIDO!!!");
         }
-        this.listarUsuarios();
+    }
+
+    private void cadastrarPessoaJuridica() {
+        String razaoSocial, cnpj, dataAbertura, email;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("\nDigite o nome: ");
+        razaoSocial = scan.nextLine();
+        System.out.println("Digite o cnpj: ");
+        cnpj = scan.nextLine();
+        System.out.println("Digite a data de abertura: ");
+        dataAbertura = scan.nextLine();
+        System.out.println("Digite o email: ");
+        email = scan.nextLine();
+
+        Usuario usuario = new Usuario(new PessoaJuridica(razaoSocial, cnpj, dataAbertura, email));
+        if (this.empresa.inserirUsuario(usuario)) {
+            System.out.println("Usuário inserido com SUCESSO!!!");
+        } else {
+            System.out.println("Erro: Usuário NÃO INSERIDO!!!");
+        }
     }
 
     private void removerUsuario() {
@@ -96,7 +143,11 @@ class Interface {
 
     private void listarUsuarios() {
         for (Usuario user : this.empresa.getListaUsuario()) {
-            System.out.println(user + "\n");
+            if (user.getPf() != null) {
+                System.out.println(user.getPf() + "\n");
+            } else {
+//                System.out.println(user.getPj() + "\n");
+            }
         }
     }
 
@@ -197,7 +248,7 @@ class Interface {
      * @return nomeCargo
      */
     private String selecionarCargo(int position) {
-        Cargo cargo = this.empresa.getListaCargo().get(position);
+        Cargo cargo = this.empresa.getListaCargo().get(position - 1);
         return cargo.getNomeCargo();
     }
 
@@ -210,7 +261,7 @@ class Interface {
             System.out.println("\n**********************************************");
             System.out.println("*           3 - GERENCIAR PERFIL             *");
             System.out.println("*--------------------------------------------*");
-            System.out.println("*  ( 1 ) - Cadastrar novo PERFIL             *");
+            System.out.println("*  ( 1 ) - Cadastrar novo perfil             *");
             System.out.println("*  ( 2 ) - Edita perfil                      *");
             System.out.println("*  ( 3 ) - Listar todos os perfis            *");
             System.out.println("*  ( 4 ) - Remover perfil(s)                 *");
@@ -245,7 +296,7 @@ class Interface {
         String tipoPerfil;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nDigite o nome do cargo: ");
+        System.out.println("\nDigite o nome do perfil: ");
         tipoPerfil = Helper.ucFirst(scanner.nextLine());
         Perfil perfil = new Perfil(tipoPerfil);
         if (this.empresa.inserirPerfil(perfil)) {
