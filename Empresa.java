@@ -25,7 +25,29 @@ class Empresa {
      * @param usuario
      */
     public Boolean inserirUsuario(Usuario usuario) {
-        return this.listaUsuario.add(usuario);
+        if (this.listaUsuario.isEmpty()) {
+            return this.listaUsuario.add(usuario);
+        } else {
+            //verifica se o usuário é uma pessoa física
+            if (usuario.getPf() != null) {
+                //se a lista de usuário pessoa física é vazia, então já adiciona
+                for (Usuario u : this.listaUsuario) {
+                    if (!u.getPf().getCpf().equals(usuario.getPf().getCpf())) {
+                        System.out.println("TEM CPF:  U: " + u);
+                        return this.listaUsuario.add(usuario);
+                    }
+                    System.out.println("Usuário já existe no sistema");
+                }
+            } else {
+                for (Usuario u : this.listaUsuario) {
+                    if (!u.getPj().getCnpj().equals(usuario.getPj().getCnpj())) {
+                        return this.listaUsuario.add(usuario);
+                    }
+                    System.out.println("Cnpj já cadastrado no sistema");
+                }
+            }
+            return false;
+        }
     }
 
     /**

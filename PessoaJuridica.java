@@ -1,5 +1,7 @@
 class PessoaJuridica extends Pessoa {
 
+
+
     private String cnpj;
     private String email;
 
@@ -22,4 +24,9 @@ class PessoaJuridica extends Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
 }

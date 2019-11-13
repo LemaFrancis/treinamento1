@@ -18,7 +18,7 @@ class Interface {
             System.out.println("*           1 - GERENCIAR USUÁRIO            *");
             System.out.println("*--------------------------------------------*");
             System.out.println("*  ( 1 ) - Cadastrar novo usuário            *");
-            System.out.println("*  ( 2 ) - Editar usuário                     *");
+            System.out.println("*  ( 2 ) - Editar usuário                    *");
             System.out.println("*  ( 3 ) - Listar todos os usuários          *");
             System.out.println("*  ( 4 ) - Remover usuário(s)                *");
             System.out.println("*  ( 0 ) - Voltar ao menu principal          *");
@@ -142,12 +142,17 @@ class Interface {
     }
 
     private void listarUsuarios() {
-        for (Usuario user : this.empresa.getListaUsuario()) {
-            if (user.getPf() != null) {
-                System.out.println(user.getPf() + "\n");
-            } else {
-                System.out.println(user.getPj() + "\n");
+        List<Usuario> usuarios = this.empresa.getListaUsuario();
+        if (!usuarios.isEmpty()){
+            for (Usuario user : usuarios) {
+                if (user.getPf() != null) {
+                    System.out.println(user.getPf() + "\n");
+                } else {
+                    System.out.println(user.getPj() + "\n");
+                }
             }
+        }else{
+            System.out.println("Nenhum usuário cadastrado!");
         }
     }
 
