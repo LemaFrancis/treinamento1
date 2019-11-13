@@ -8,8 +8,6 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-//    public abstract String getNome();
-
     public abstract void setNome(String nome);
 
     public String getDataNascimento() {

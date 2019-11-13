@@ -2,6 +2,10 @@ class Cargo {
 
     private String nomeCargo;
 
+    Cargo(){
+
+    }
+
     Cargo(String cargo) {
         this.nomeCargo = cargo;
     }

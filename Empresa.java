@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Empresa {
 
@@ -63,8 +64,10 @@ class Empresa {
      * @param cargo
      * @return boolean
      */
-    public Boolean inserirCargo(Cargo cargo) {
-        return this.listaCargo.add(cargo);
+    public void inserirCargo(Cargo cargo) {
+        this.listaCargo.add(cargo);
+        this.listaCargo = this.listaCargo.stream().sorted
+                ((c, c2) -> c.getNomeCargo().compareTo(c2.getNomeCargo())).collect(Collectors.toList());
     }
 
     /**
@@ -85,6 +88,10 @@ class Empresa {
     public Boolean removerCargo(int position) {
         Cargo cargo = this.listaCargo.get(position - 1);
         return this.listaCargo.remove(cargo);
+    }
+
+    public void ordenarCargo() {
+
     }
 
     //========= PERFIL ==========//
