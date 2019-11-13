@@ -2,17 +2,8 @@ class Cargo {
 
     private String nomeCargo;
 
-    Cargo(){
-
-    }
-
     Cargo(String cargo) {
         this.nomeCargo = cargo;
-    }
-
-    @Override
-    public String toString() {
-        return nomeCargo;
     }
 
     public void setCargo(String cargo) {
@@ -21,5 +12,10 @@ class Cargo {
 
     public String getNomeCargo() {
         return this.nomeCargo;
+    }
+
+    @Override
+    public String toString() {
+        return nomeCargo;
     }
 }

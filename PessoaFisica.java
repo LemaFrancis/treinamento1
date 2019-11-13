@@ -16,17 +16,13 @@ class PessoaFisica extends Pessoa {
         this.perfil = new ArrayList();
     }
 
+    String getCpf() {
+        return this.cpf;
+    }
+
     @Override
     public void setNome(String razaoSocial) {
         this.nome = razaoSocial;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    String getCpf() {
-        return this.cpf;
     }
 
     @Override
