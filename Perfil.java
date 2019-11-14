@@ -13,9 +13,13 @@ class Perfil {
         this.tipoPerfil = perfil;
     }
 
+    public String getPerfil(){
+        return this.tipoPerfil;
+    }
+
     @Override
     public String toString() {
-        return tipoPerfil + "\n";
+        return tipoPerfil;
     }
 
 }

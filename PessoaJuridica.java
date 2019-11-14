@@ -1,23 +1,21 @@
+import java.util.Date;
+import java.util.List;
+
 class PessoaJuridica extends Pessoa {
-
-
 
     private String cnpj;
     private String email;
+    private Cargo cargo;
+    private List<Perfil> perfil;
 
-    PessoaJuridica(String razaoSocial, String cnpj, String dataAbertura, String email) {
+    PessoaJuridica(String razaoSocial, String cnpj, Date dataAbertura, String email) {
         super(razaoSocial, dataAbertura);
         this.cnpj = cnpj;
         this.email = email;
     }
 
-
-    @Override
-    public String toString() {
-        return "nome='" + nome + '\'' +
-                "\ncnpj='" + cnpj + '\'' +
-                "\ndataNascimento='" + dataNascimento + '\'' +
-                "\nemail='" + email + '\'';
+    public String getCnpj() {
+        return cnpj;
     }
 
     @Override
@@ -25,8 +23,12 @@ class PessoaJuridica extends Pessoa {
         this.nome = nome;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    @Override
+    public String toString() {
+        return "\nnome='" + nome + '\'' +
+                "\ncnpj='" + cnpj + '\'' +
+                "\ndataNascimento='" + dataNascimento + '\'' +
+                "\nemail='" + email + '\'';
     }
 
 }
