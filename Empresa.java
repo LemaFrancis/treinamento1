@@ -25,29 +25,41 @@ class Empresa {
      * @param usuario
      */
     public Boolean inserirUsuario(Usuario usuario) {
+        //se a lista de usuário pessoa física é vazia, então insere
         if (this.listaUsuario.isEmpty()) {
             return this.listaUsuario.add(usuario);
         } else {
-            //verifica se o usuário é uma pessoa física
-            if (usuario.getPf() != null) {
-                //se a lista de usuário pessoa física é vazia, então já adiciona
-                for (Usuario u : this.listaUsuario) {
-                    if (!u.getPf().getCpf().equals(usuario.getPf().getCpf())) {
-                        System.out.println("TEM CPF:  U: " + u);
-                        return this.listaUsuario.add(usuario);
-                    }
-                    System.out.println("Usuário já existe no sistema");
-                }
-            } else {
-                for (Usuario u : this.listaUsuario) {
-                    if (!u.getPj().getCnpj().equals(usuario.getPj().getCnpj())) {
-                        return this.listaUsuario.add(usuario);
-                    }
-                    System.out.println("Cnpj já cadastrado no sistema");
-                }
+            //se usuário não existir no sistema, então insere
+            if (!verificarUnicidadeUsuario(usuario)) {
+                return this.listaUsuario.add(usuario);
             }
             return false;
         }
+    }
+
+    /**
+     * Metodo para verificar se usuário é unico no sistema
+     *
+     * @param usuario
+     * @return boolean
+     */
+    public Boolean verificarUnicidadeUsuario(Usuario usuario) {
+        //verifica se o usuário é uma pessoa física ou jurídica
+        if (usuario.getPf() != null) {
+            for (Usuario u : this.listaUsuario) {
+                if (u.getPf().getCpf().equals(usuario.getPf().getCpf())) {
+                    return true;
+                }
+            }
+        } else {
+            for (Usuario u : this.listaUsuario) {
+                if (u.getPj().getCnpj().equals(usuario.getPj().getCnpj())) {
+                    return true;
+                }
+            }
+        }
+        //caso não existe usuário no sistema, retorna false
+        return false;
     }
 
     /**
@@ -86,8 +98,25 @@ class Empresa {
      * @param cargo
      * @return boolean
      */
-    public void inserirCargo(Cargo cargo) {
+    public Boolean inserirCargo(Cargo cargo) {
+        //caso lista seja vazio, inserir cargo
+        if (this.listaCargo.isEmpty()) {
+            System.out.println("é vazia");
+            insertAndSortCargo(cargo);
+        } else {
+            //verifica se o cargo é único cadastrado no sistema
+            if (verificarUnicidadeCargo(cargo)) {
+                System.out.println("Verificada");
+                this.listaCargo.add(cargo);
+                insertAndSortCargo(cargo);
+            }
+        }
+        return false;
+    }
+
+    public void insertAndSortCargo(Cargo cargo) {
         this.listaCargo.add(cargo);
+        //ordena a lista de cargos
         this.listaCargo = this.listaCargo.stream().sorted
                 ((c, c2) -> c.getNomeCargo().compareTo(c2.getNomeCargo())).collect(Collectors.toList());
     }
@@ -114,6 +143,16 @@ class Empresa {
 
     public void ordenarCargo() {
 
+    }
+
+    public Boolean verificarUnicidadeCargo(Cargo cargo) {
+        for (Cargo c : listaCargo) {
+            if (!c.getNomeCargo().equals(cargo.getNomeCargo())) {
+                System.out.println("é TRUEEEE");
+                return true;
+            }
+        }
+        return false;
     }
 
     //========= PERFIL ==========//

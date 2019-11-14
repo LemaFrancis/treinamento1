@@ -18,4 +18,5 @@ class Cargo {
     public String toString() {
         return nomeCargo;
     }
+
 }

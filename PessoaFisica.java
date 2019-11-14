@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 class PessoaFisica extends Pessoa {
@@ -6,17 +7,17 @@ class PessoaFisica extends Pessoa {
     private String cpf;
     private String sexo;
     private Cargo cargo;
-    private List perfil;
+    private List<Perfil> perfil;
 
-    PessoaFisica(String nome, String cpf, String dataNascimento, String sexo, String cargo) {
+    PessoaFisica(String nome, String cpf, Date dataNascimento, String sexo, String cargo, List<Perfil> perfis) {
         super(nome, dataNascimento);
         this.cpf = cpf;
         this.sexo = sexo;
         this.cargo = new Cargo(cargo);
-        this.perfil = new ArrayList();
+        this.perfil = perfis;
     }
 
-    String getCpf() {
+    public String getCpf() {
         return this.cpf;
     }
 
@@ -27,11 +28,12 @@ class PessoaFisica extends Pessoa {
 
     @Override
     public String toString() {
-        return "nome='" + nome + '\'' +
-                "\ncpf='" + cpf + '\'' +
-                "\ndataNascimento='" + dataNascimento +
-                "\nsexo='" + sexo + '\'' +
-                "\ncargo=" + cargo +
-                "\nperfil=" + perfil + '\'';
+        return "Nome= '" + nome + '\'' +
+                "\nCPF= '" + cpf + '\'' +
+                "\nData de Nascimento= '" + dataNascimento + '\'' +
+                "\nSexo= '" + sexo + '\'' +
+                "\nCargo= '" + cargo + '\'' +
+                "\nPerfil= '" + perfil + '\'';
     }
+
 }
